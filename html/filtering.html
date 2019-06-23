@@ -37,7 +37,6 @@
         return "https://developer.nps.gov/api/v1/" + name + "?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
       }
       var url = returnUrl("parks");
-      var url1 = returnUrl("alerts");
       console.log(url);
       $.getJSON(url, function(p) {
         //console.log('1'); // this will show the info it in firebug console

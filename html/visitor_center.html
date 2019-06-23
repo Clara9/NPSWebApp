@@ -61,18 +61,20 @@
         if (search.length > 0){
         var regex = new RegExp(search, 'i');
         var output = "<thread><tr>" + "<th>Name</th>" + "<th>Description</th>"
-            + "<th>DirectionsInfo/WeatherOverview</th>" + "</tr></thread>";
+            + "<th>DirectionsInfo / WeatherOverview</th>" + "</tr></thread>";
         $.each(p, function(key, val) {
+          console.log(val);
           if (val.parkCode.search(regex) != -1) {
             console.log(key);
             output += "<tr>";
             output += "<td id ='" + key + "'>" + val.name + "</td>";
             output += "<td id ='" + key + "'>" + val.description + "</td>";
-            // if (val.directionsInfo != null) {
-            //   output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
-            // }
-              // console.log("hi");
-              output += "<td id ='" + key + "'>" + val.weatheroveriew + "</td>";
+            if (val.directionsInfo != null) {
+              output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
+            }
+            if (val.weatheroverview != null) {
+              output += "<td id ='" + key + "'>" + val.weatheroverview + "</td>";
+            }
             output += "<tr>";
           }
         });
