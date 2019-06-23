@@ -8,15 +8,29 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 
-    <title>Display Details</title>
+    <title>Parks Filter</title>
+    <a href="../index.html" class="navbar-brand"><img src="../img/logo.png" height = "35"
+      alt=""></a>   
+    <button onclick="goBack()" class="navbar-brand" height = "35">Back</button>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
   </head>
-  <body>
+
+  <body background="../img/background.jpg" style = "background-size: 100%">
     <p><br><br></p>
+    <h3 class="mbr-text pb-3 mbr-fonts-style display-5" style = "text-align: center; color: white">
+    Display relative alerts, articles, events, and news releases about a selected destination.</h3>
+    <p style = "text-align: center; color: white"><b><i> Click on the NPS symbol to return to home page.</i></b></p>
     <div class = "container">
-      <input type = "search" class = "form-control" id = "search"/><br>
-      <table class = "table table-striped table-bordered table-hover">
+      <input type = "search" placeholder = "Search by title. You may need to wait 5 - 10 seconds for the first result to show up..:)"
+      class = "form-control" id = "search"/><br>
+      <table class = "table table-striped table-bordered table-hover" style = "color: white">
       </table>
     </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -29,75 +43,47 @@
       function returnUrl(name) {
         return "https://developer.nps.gov/api/v1/" + name + "?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
       }
-      var url = returnUrl("alerts");
-      console.log(url);
+      url = returnUrl("places");
+      //referenced from "https://stackoverflow.com/questions/13346342/get-json-with-multiple-urls"
+      // function GetJsonResult(url) {
+      //   console.log("wrewr");
+      //   $.getJSON(url, 
+      //     function(p) {
+      //       console.log("1");
+      //     });
+      // }
+
+      // $(document).ready(function() {
+      //   $("search").keyup(function() {
+      //     GetJsonResult(url1);
+      //   });
+      // });
       $.getJSON(url, function(p) {
         //console.log('1'); // this will show the info it in firebug console
         $('#search').keyup(function() {
         var search = $('#search').val();
         console.log(search.length);
-        if (search.length > 0) {
+        if (search.length > 0){
         var regex = new RegExp(search, 'i');
-        var output = "<thread><tr>" + "<th>Category</th>" + "<th>Park Code</th>"
-            + "<th>Title</th>";
+        var output = "<thread><tr>" + "<th>Title</th>"
+            + "<th>Description</th>" + "<th>Url</th>" + "</tr></thread>";
         $.each(p.data, function(key, val) {
-          if (val.category.search(regex) != -1 || val.parkCode.search(regex) != -1) {
+          if (val.title.search(regex) != -1) {
             console.log(key);
             output += "<tr>";
-            output += "<td id ='" + key + "'>" + val.category + "</td>";
-            output += "<td id ='" + key + "'>" + val.parkCode + "</td>";
-            output += "<td id ='" + key + "'>" + val.title + "</td>";
+            output += "<td id ='" + key + "'>" + "<b>" + val.title + "</b>" + "</td>";
+            output += "<td id ='" + key + "'>" + val.listingdescription + "</td>";
+            output += "<td id ='" + key + "'>" + val.url+ "</td>";
             output += "<tr>";
-        }
+          }
         });
         $('table').html(output);
       }
       })
       });
-        // $.getJSON(url1, function(p1) {
-        //   console.log('1'); // this will show the info it in firebug console
-        //   $('#search').keyup(function() {
-        //   var search = $('#search').val();
-        //   console.log(search.length);
-        //   if (search.length > 0){
-        //   var regex = new RegExp(search, 'i');
-        //   var output = "<thread><tr><th>Name</th><th>Description</th><th>DirectionsInfo</th></tr></thread>";
-        //   $.each(p1.data, function(key, val) {
-        //     if (val.id.search(regex) != -1) {
-        //       console.log(key);
-        //       output += "<tr>";
-        //       output += "<td id ='" + key + "'>" + val.name + "</td>";
-        //       output += "<td id ='" + key + "'>" + val.description + "</td>";
-        //       output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
-        //       output += "<tr>";
-        //   }
-        //   });
-        //   $('table').html(output);
-        // }
-        // })
-        // // else{
-        // //   $('table').html("");
-        // // }
-        // });
     </script>
-    <!-- <script>
-      var url = "https://developer.nps.gov/api/v1/visitorcenters?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
-      $('#search').keydown(function() {
-        $.getJSON(url, function(json) {
-          // alert("ji");
-          // var search = $('#search').val();
-          // var regex = new RegExp(search, 'i');
-          // var output;
-          // $.each(data, function(key, val) {
-          //   output += "<tr>";
-          //   output += "<td id ='" + key + "'>" + val.name + "<td>";
-          //   output += "<td id ='" + key + "'>" + val.description + "<td>";
-          //   output += "<td id ='" + key + "'>" + val.directionsInfo + "<td>";
-          //   output += "<tr>";
-          // });
-          console.log(json);
-        });
-      })
-    </script> -->
+  
+  <!-- <button id="myButton" class="float-left submit-button" style = "color : white;
+    background-color: black; font-size: 20px; float:right">Home</button> -->
   </body>
 </html>

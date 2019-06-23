@@ -35,7 +35,7 @@
     <h3 class="mbr-text pb-3 mbr-fonts-style display-5" style = "text-align: center; color: white">
         Type in the search box for visitor center information and nearby campgrounds.</h3>    
     <div class = "container">
-      <input type = "search" class = "form-control" id = "search"/><br>
+      <input type = "search" placeholder = "Search by parkCode. You may need to wait 5 - 10 seconds for the first result to show up..:)" class = "form-control" id = "search"/><br>
       <table class = "table table-striped table-bordered table-hover" style = "color: white">
       </table>
     </div>
@@ -48,12 +48,12 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-      function returnUrl(name) {
-        return "https://developer.nps.gov/api/v1/" + name + "?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
-      }
-      var url1 = returnUrl("visitorcenters");
-      var url2 = returnUrl("campgrounds");
-      $.getJSON("../merged.json", function(p) {
+      // function returnUrl(name) {
+      //   return "https://developer.nps.gov/api/v1/" + name + "?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
+      // }
+      // var url1 = returnUrl("visitorcenters");
+      // var url2 = returnUrl("campgrounds");
+      $.getJSON("../json/merged.json", function(p) {
         //console.log('1'); // this will show the info it in firebug console
         $('#search').keyup(function() {
         var search = $('#search').val();
@@ -62,17 +62,17 @@
         var regex = new RegExp(search, 'i');
         var output = "<thread><tr>" + "<th>Name</th>" + "<th>Description</th>"
             + "<th>DirectionsInfo/WeatherOverview</th>" + "</tr></thread>";
-        $.each(p.data, function(key, val) {
+        $.each(p, function(key, val) {
           if (val.parkCode.search(regex) != -1) {
             console.log(key);
             output += "<tr>";
             output += "<td id ='" + key + "'>" + val.name + "</td>";
             output += "<td id ='" + key + "'>" + val.description + "</td>";
-            if (val.directionsInfo.search(regex) != -1) {
-              output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
-            } else {
+            // if (val.directionsInfo != null) {
+            //   output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
+            // }
+              // console.log("hi");
               output += "<td id ='" + key + "'>" + val.weatheroveriew + "</td>";
-            }
             output += "<tr>";
           }
         });
