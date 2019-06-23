@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+
+    <title>Display Details</title>
+  </head>
+  <body>
+    <p><br><br></p>
+    <div class = "container">
+      <input type = "search" class = "form-control" id = "search"/><br>
+      <table class = "table table-striped table-bordered table-hover">
+      </table>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      function returnUrl(name) {
+        return "https://developer.nps.gov/api/v1/" + name + "?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
+      }
+      var url = returnUrl("alerts");
+      console.log(url);
+      $.getJSON(url, function(p) {
+        //console.log('1'); // this will show the info it in firebug console
+        $('#search').keyup(function() {
+        var search = $('#search').val();
+        console.log(search.length);
+        if (search.length > 0) {
+        var regex = new RegExp(search, 'i');
+        var output = "<thread><tr>" + "<th>Category</th>" + "<th>Park Code</th>"
+            + "<th>Title</th>";
+        $.each(p.data, function(key, val) {
+          if (val.category.search(regex) != -1 || val.parkCode.search(regex) != -1) {
+            console.log(key);
+            output += "<tr>";
+            output += "<td id ='" + key + "'>" + val.category + "</td>";
+            output += "<td id ='" + key + "'>" + val.parkCode + "</td>";
+            output += "<td id ='" + key + "'>" + val.title + "</td>";
+            output += "<tr>";
+        }
+        });
+        $('table').html(output);
+      }
+      })
+      });
+        // $.getJSON(url1, function(p1) {
+        //   console.log('1'); // this will show the info it in firebug console
+        //   $('#search').keyup(function() {
+        //   var search = $('#search').val();
+        //   console.log(search.length);
+        //   if (search.length > 0){
+        //   var regex = new RegExp(search, 'i');
+        //   var output = "<thread><tr><th>Name</th><th>Description</th><th>DirectionsInfo</th></tr></thread>";
+        //   $.each(p1.data, function(key, val) {
+        //     if (val.id.search(regex) != -1) {
+        //       console.log(key);
+        //       output += "<tr>";
+        //       output += "<td id ='" + key + "'>" + val.name + "</td>";
+        //       output += "<td id ='" + key + "'>" + val.description + "</td>";
+        //       output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
+        //       output += "<tr>";
+        //   }
+        //   });
+        //   $('table').html(output);
+        // }
+        // })
+        // // else{
+        // //   $('table').html("");
+        // // }
+        // });
+    </script>
+    <!-- <script>
+      var url = "https://developer.nps.gov/api/v1/visitorcenters?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
+      $('#search').keydown(function() {
+        $.getJSON(url, function(json) {
+          // alert("ji");
+          // var search = $('#search').val();
+          // var regex = new RegExp(search, 'i');
+          // var output;
+          // $.each(data, function(key, val) {
+          //   output += "<tr>";
+          //   output += "<td id ='" + key + "'>" + val.name + "<td>";
+          //   output += "<td id ='" + key + "'>" + val.description + "<td>";
+          //   output += "<td id ='" + key + "'>" + val.directionsInfo + "<td>";
+          //   output += "<tr>";
+          // });
+          console.log(json);
+        });
+      })
+    </script> -->
+  </body>
+</html>

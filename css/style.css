@@ -1,0 +1,41 @@
+#root {
+ max-width: 1200px;
+ margin: 0 auto;
+}
+
+.container {
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  /* text-align: center; */
+}
+.card {
+ margin: 1rem;
+ border: 1px solid gray;
+}
+
+@media screen and (min-width: 600px) {
+ .card {
+   flex: 1 1 calc(50% - 2rem);
+ }
+}
+
+@media screen and (min-width: 900px) {
+ .card {
+   flex: 1 1 calc(33% - 2rem);
+ }
+}
+
+/* html { 
+  background: url(background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
