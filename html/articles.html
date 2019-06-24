@@ -24,7 +24,7 @@
     Display relative alerts, articles, events, and news releases about a selected destination.</h3>
     <p style = "text-align: center; color: white"><b><i> Click on the NPS symbol to return to home page.</i></b></p>
     <div class = "container">
-      <input type = "search" placeholder = "You may need to wait 5 - 10 seconds for the first result to show up..:)"
+      <input type = "search" placeholder = "Search title. You may need to wait 5 - 10 seconds for the first result to show up..:)"
       class = "form-control" id = "search"/><br>
       <table class = "table table-striped table-bordered table-hover" style = "color: white">
       </table>
@@ -42,10 +42,7 @@
       function returnUrl(name) {
         return "https://developer.nps.gov/api/v1/" + name + "?parkCode=&api_key=NkLpYsKGCSKgMherp9rfQSDisnq8fVkkGfuAh65X";
       }
-      url1 = returnUrl("alerts");
-      url2 = returnUrl("articles");
-      url3 = returnUrl("events");
-      url4 = returnUrl("newsreleases");
+      var url = returnUrl("articles");
       //referenced from "https://stackoverflow.com/questions/13346342/get-json-with-multiple-urls"
       // function GetJsonResult(url) {
       //   console.log("wrewr");
@@ -60,23 +57,23 @@
       //     GetJsonResult(url1);
       //   });
       // });
-      $.getJSON(url2, function(p) {
+      $.getJSON(url, function(p) {
         //console.log('1'); // this will show the info it in firebug console
         $('#search').keyup(function() {
         var search = $('#search').val();
         console.log(search.length);
         if (search.length > 0){
         var regex = new RegExp(search, 'i');
-        var output = "<h1> Articles </h1>";
+        var output = "<h1 style = 'text-align: center'> Articles </h1>";
         // var output = "<thread><tr>" + "<th>Title</th>" + "<th>Description</th>"
         //     + "<th>DirectionsInfo</th>" + "</tr></thread>";
         $.each(p.data, function(key, val) {
-          if (val.id.search(regex) != -1) {
+          if (val.title.search(regex) != -1) {
             console.log(key);
-            output += "<img src = " + val.listingimage.url + " style = " + 
-            "display: block; margin: 0 auto" + ">" + "<br>";
-            output += "<p>" + "<b>" + val.title + "</b>" + "</p>" + "<br>";
-            output += "<p>" + val.listingdescription + "</p>" + "<br>";
+            output += "<img src = " + val.listingimage.url + " style = display:block;" +
+              "margin:auto;" + "width:400px;" + "height:300px" + ">" + "<br>";
+            output += "<h5 style = 'text-align: center'>" + "<b>" + val.title + "</b>" + "</h5>";
+            output += "<p style = 'margin: 60px'>" + val.listingdescription + "</p>" + "<br>";
             // output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
           }
         });

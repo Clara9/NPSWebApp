@@ -67,7 +67,8 @@
           if (val.parkCode.search(regex) != -1) {
             console.log(key);
             output += "<tr>";
-            output += "<td id ='" + key + "'>" + val.name + "</td>";
+            output += "<td id ='" + key + "'>" + "<b>" + val.name 
+              + "</b" + "</td>";
             output += "<td id ='" + key + "'>" + val.description + "</td>";
             if (val.directionsInfo != null) {
               output += "<td id ='" + key + "'>" + val.directionsInfo + "</td>";
