@@ -1,0 +1,50 @@
+1 afam African American Civil War Memorial
+2 auca Augusta Canal National Heritage Area
+3 bepa Belmont-Paul Women's Equality National Monument
+4 bicy Big Cypress National Preserve
+5 brca Bryce Canyon National Park
+6 cane Camp Nelson National Monument
+7 caco Cape Cod National Seashore
+8 chpi Charles Pinckney National Historic Site
+9 cuva Cuyahoga Valley National Park
+10 drto Dry Tortugas National Park
+11 efmo Effigy Mounds National Monument
+12 elma El Malpais National Monument
+13 fila First Ladies National Historic Site
+14 fobo Fort Bowie National Historic Site
+15 foda Fort Davis National Historic Site
+16 fost Fort Stanwix National Monument
+17 frdo Frederick Douglass National Historic Site
+18 frsp Fredericksburg & Spotsylvania National Military Park
+19 frhi Friendship Hill National Historic Site
+20 gaar Gates Of The Arctic National Park & Preserve
+21 gari Gauley River National Recreation Area
+22 glec Glen Echo Park
+23 goga Golden Gate National Recreation Area
+24 gois Governors Island National Monument
+25 hart Harriet Tubman National Historical Park
+26 jame Historic Jamestowne Part of Colonial National Historical Park
+27 pima Hohokam Pima National Monument
+28 kefj Kenai Fjords National Park
+29 knri Knife River Indian Villages National Historic Site
+30 kowa Korean War Veterans Memorial
+31 linc Lincoln Memorial
+32 long Longfellow House Washington's Headquarters National Historic Site
+33 manz Manzanar National Historic Site
+34 mava Martin Van Buren National Historic Site
+35 auto Motor Cities National Heritage Area
+36 avia National Aviation Heritage Area
+37 nace National Capital Parks-East
+38 niob Niobrara National Scenic River
+39 orpi Organ Pipe Cactus National Monument
+40 ozar Ozark National Scenic Riverways
+41 para Parashant National Monument
+42 pete Petersburg National Battlefield
+43 sahi Sagamore Hill National Historic Site
+44 sacn Saint Croix National Scenic Riverway
+45 sapu Salinas Pueblo Missions National Monument
+46 sari Salt River Bay National Historical Park and Ecological Preserve
+47 saan San Antonio Missions National Historical Park
+48 thro Theodore Roosevelt National Park
+49 thje Thomas Jefferson Memorial
+50 york Yorktown Battlefield Part of Colonial National Historical Park
